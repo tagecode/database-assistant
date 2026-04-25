@@ -1,75 +1,39 @@
-# React + TypeScript + Vite
+# BIU Database
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一款面向开发者与数据相关岗位的**跨平台开源数据库管理桌面客户端**，在 Windows、macOS、Linux 上提供统一的连接管理、SQL 编辑与执行、对象浏览、表数据查看与编辑、导入导出等能力，目标为「开箱可用、体验现代、可持续扩展」的数据库工作台。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| 类别 | 技术 |
+|------|------|
+| 桌面壳 | [Electron](https://www.electronjs.org/) |
+| 语言 | [TypeScript](https://www.typescriptlang.org/) |
+| 界面 | [React](https://react.dev/)、[MUI (Material UI)](https://mui.com/) |
+| 构建 | [Vite](https://vite.dev/)、[vite-plugin-electron](https://github.com/electron-vite/vite-plugin-electron) |
+| 其他 | Monaco Editor、AG Grid 等（详见 `package.json`） |
 
-## React Compiler
+主进程侧通过 Node 驱动与各类数据库通信；具体支持的数据库类型以代码与发布说明为准。
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 本地开发
 
-Note: This will impact Vite dev & build performances.
+已安装 **Node.js** 与 [pnpm](https://pnpm.io/) 后：
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+`dev` 会由 Vite 与 [vite-plugin-electron](https://github.com/electron-vite/vite-plugin-electron) 同时拉起渲染进程与 Electron 主进程，进入桌面端开发调试。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| 命令 | 说明 |
+|------|------|
+| `pnpm dev` | 开发模式（Vite + Electron） |
+| `pnpm build` | 类型检查 + 构建 |
+| `pnpm typecheck` | TypeScript 检查 |
+| `pnpm lint` | ESLint |
+| `pnpm start` | 在已有构建产物上启动 Electron（一般先 `pnpm build`） |
+| `pnpm pack` / `pnpm dist` | 使用 electron-builder 打包，输出见配置 |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 文档
+
+产品需求与规划见仓库内 [**PRD.md**](./PRD.md)。
