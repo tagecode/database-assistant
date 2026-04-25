@@ -1,0 +1,10 @@
+/* 具体样式优先使用 MUI sx / theme，此处仅保留最小全局习惯 */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
