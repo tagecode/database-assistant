@@ -21,8 +21,10 @@
     "dist:linux": "pnpm build && electron-builder --linux"
   },
   "build": {
-    "appId": "com.biu.database",
-    "productName": "biu-database",
+    "appId": "com.tagecode.biu-database",
+    "productName": "BiuDatabase",
+    "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
+    "copyright": "Copyright © 2026 TageCode",
     "files": [
       "dist/**",
       "dist-electron/**"
