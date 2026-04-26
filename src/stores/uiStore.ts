@@ -89,7 +89,7 @@ export const useUIStore = create<UIState>()(
       markExecutionLogsRead: () => set({ executionLogUnreadCount: 0 }),
     }),
     {
-      name: 'biu-database-ui',
+      name: 'database-assistant-ui',
       partialize: (s) => ({
         colorMode: s.colorMode,
         editorFontSize: s.editorFontSize,

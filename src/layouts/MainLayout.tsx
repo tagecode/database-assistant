@@ -41,7 +41,7 @@ export function MainLayout({ children }: { children: ReactNode }) {
       >
         <Toolbar variant="dense">
           <Typography variant="h6" component="h1" sx={{ flexGrow: 1, fontWeight: 600 }}>
-            BIU Database
+            Database Assistant
           </Typography>
           <Tooltip title={isDark ? '切换为浅色' : '切换为深色'}>
             <IconButton

@@ -254,7 +254,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
       },
     }),
     {
-      name: 'biu-workspace',
+      name: 'database-assistant-workspace',
       partialize: (s) => ({
         selectedConnectionId: s.selectedConnectionId,
         selectedQueryContext: s.selectedQueryContext,

@@ -56,7 +56,7 @@ shared/                 ← 主进程与渲染进程共享
 
 **数据库适配器模式：** `shared/adapter/databasePort.ts` 定义统一接口，`electron/main/db/adapterFactory.ts` 为 mysql/postgres/sqlite 生成各自的 DatabaseAdapter 实例。渲染进程不直接接触数据库驱动。
 
-**状态管理：** Zustand + persist 中间件（localStorage）。workspaceStore 持久化 key `biu-workspace`，uiStore 持久化 key `biu-database-ui`。修改 store 逻辑时需同步更新 `partialize` 和 `merge` 方法。
+**状态管理：** Zustand + persist 中间件（localStorage）。workspaceStore 持久化 key `database-assistant-workspace`，uiStore 持久化 key `database-assistant-ui`。修改 store 逻辑时需同步更新 `partialize` 和 `merge` 方法。
 
 **Preload 类型安全：** `src/types/electron-api.d.ts` 声明 `ElectronAPI` 接口并挂载到 `window`。新增 IPC 通道时，需同步更新 preload/index.ts 和 electron-api.d.ts。
 

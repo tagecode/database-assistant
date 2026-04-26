@@ -1,5 +1,5 @@
 {
-  "name": "biu-database",
+  "name": "database-assistant",
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
@@ -21,8 +21,8 @@
     "dist:linux": "pnpm build && electron-builder --linux"
   },
   "build": {
-    "appId": "com.tagecode.biu-database",
-    "productName": "BiuDatabase",
+    "appId": "com.tagecode.database-assistant",
+    "productName": "DatabaseAssistant",
     "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
     "copyright": "Copyright © 2026 TageCode",
     "files": [
