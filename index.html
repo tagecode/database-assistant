@@ -5,8 +5,73 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>database-assistant</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      html,
+      body,
+      #root {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+      }
+      #boot-splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        background: radial-gradient(circle at 30% 20%, #1d2a44, #0f172a 60%);
+        color: #e5e7eb;
+        font-family:
+          Inter,
+          "PingFang SC",
+          "Microsoft YaHei",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 220ms ease;
+      }
+      #boot-splash.boot-splash--hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .boot-splash__spinner {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.25);
+        border-top-color: #60a5fa;
+        animation: boot-spin 0.9s linear infinite;
+      }
+      .boot-splash__title {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+      .boot-splash__desc {
+        font-size: 13px;
+        opacity: 0.85;
+      }
+      @keyframes boot-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="boot-splash" role="status" aria-live="polite" aria-label="应用加载中">
+      <div class="boot-splash__spinner"></div>
+      <div class="boot-splash__title">Database Assistant</div>
+      <div class="boot-splash__desc">正在启动，请稍候...</div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

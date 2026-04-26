@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { registerIpcHandlers } from './ipc/register'
@@ -41,6 +41,10 @@ function createWindow() {
 app.whenReady().then(() => {
   installMainProcessLogging()
   registerIpcHandlers()
+  // Windows / Linux：去掉系统默认「文件 / 编辑 / 视图…」菜单栏；macOS 保留标准菜单栏
+  if (process.platform !== 'darwin') {
+    Menu.setApplicationMenu(null)
+  }
   createWindow()
 
   app.on('activate', () => {
