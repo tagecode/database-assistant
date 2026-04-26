@@ -14,11 +14,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "electron .",
-    "pack": "pnpm build && electron-builder --dir",
-    "dist": "pnpm build && electron-builder",
-    "dist:mac": "pnpm build && electron-builder --mac",
-    "dist:win": "pnpm build && electron-builder --win",
-    "dist:linux": "pnpm build && electron-builder --linux"
+    "pack": "pnpm dist:icons && pnpm build && electron-builder --dir",
+    "dist": "pnpm dist:icons && pnpm build && electron-builder",
+    "dist:mac": "pnpm dist:icons && pnpm build && electron-builder --mac",
+    "dist:win": "pnpm dist:icons && pnpm build && electron-builder --win",
+    "dist:linux": "pnpm dist:icons && pnpm build && electron-builder --linux",
+    "dist:icons": "node scripts/generate-electron-icons.mjs"
   },
   "build": {
     "appId": "com.tagecode.database-assistant",
@@ -30,22 +31,29 @@
       "dist-electron/**"
     ],
     "directories": {
-      "output": "release"
+      "output": "release",
+      "buildResources": "build"
     },
     "mac": {
+      "icon": "icon.icns",
       "category": "public.app-category.developer-tools",
       "target": [
         "dmg",
         "zip"
       ]
     },
+    "dmg": {
+      "icon": "icon.icns"
+    },
     "win": {
+      "icon": "icon.ico",
       "target": [
         "nsis",
         "zip"
       ]
     },
     "linux": {
+      "icon": "icons/png",
       "target": [
         "AppImage",
         "deb"
@@ -85,6 +93,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "electron": "^41.3.0",
     "electron-builder": "^26.8.1",
+    "electron-icon-builder": "^2.0.1",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",

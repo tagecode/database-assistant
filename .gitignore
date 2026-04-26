@@ -12,6 +12,8 @@ dist
 dist-electron
 dist-ssr
 release
+# electron-icon-builder 中间产物（源图见 build/icon.png，产物见 build/icon.icns / build/icon.ico）
+build/icons
 *.local
 
 # Editor directories and files
