@@ -98,6 +98,7 @@ export function SqlWorkbench() {
   const colorMode = useUIStore((s) => s.colorMode)
   const editorFontSize = useUIStore((s) => s.editorFontSize)
   const queryTimeoutMs = useUIStore((s) => s.queryTimeoutMs)
+  const queryPageSize = useUIStore((s) => s.defaultQueryPageSize)
   const appendExecutionLog = useUIStore((s) => s.appendExecutionLog)
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
   const queryRunIdRef = useRef<string | null>(null)
@@ -132,7 +133,6 @@ export function SqlWorkbench() {
     closeSqlTab,
     closeOtherSqlTabs,
     closeAllSqlTabs,
-    setTabQueryPageSize,
     setTabResults,
     setActiveResultIndex,
     updateTabResult,
@@ -149,7 +149,6 @@ export function SqlWorkbench() {
       closeSqlTab: s.closeSqlTab,
       closeOtherSqlTabs: s.closeOtherSqlTabs,
       closeAllSqlTabs: s.closeAllSqlTabs,
-      setTabQueryPageSize: s.setTabQueryPageSize,
       setTabResults: s.setTabResults,
       setActiveResultIndex: s.setActiveResultIndex,
       updateTabResult: s.updateTabResult,
@@ -168,7 +167,6 @@ export function SqlWorkbench() {
   const activeResultIndex = activeTab?.activeResultIndex ?? 0
   const totalDurationMs = activeTab?.lastTotalDurationMs ?? 0
   const result: QueryResultSet | null = results[activeResultIndex] ?? null
-  const queryPageSize = activeTab?.queryPageSize ?? 200
   const activeQueryContext = activeTab?.queryContext ?? selectedQueryContext ?? null
   const busy = loading || resultPageLoading
 
@@ -840,22 +838,6 @@ export function SqlWorkbench() {
         >
           取消执行
         </Button>
-        <TextField
-          size="small"
-          type="number"
-          label="每页行数"
-          value={queryPageSize}
-          onChange={(e) => {
-            if (!activeTabId) {
-              return
-            }
-            setTabQueryPageSize(
-              activeTabId,
-              Math.min(10_000, Math.max(1, parseInt(e.target.value, 10) || 200)),
-            )
-          }}
-          sx={{ width: 120 }}
-        />
         {result && (
           <>
             <Typography variant="body2" color="text.secondary">

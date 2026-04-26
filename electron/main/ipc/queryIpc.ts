@@ -75,7 +75,7 @@ export function registerQueryIpc() {
         if (!rec) {
           return err('CONNECTION_NOT_FOUND', '未找到该连接')
         }
-        const pageSize = Math.min(10_000, Math.max(1, p.pageSize ?? p.maxRows ?? 200))
+        const pageSize = Math.min(10_000, Math.max(1, p.pageSize ?? p.maxRows ?? 100))
         const queryRunId = p.queryRunId ?? randomUUID()
         const timeoutMs = normalizeQueryTimeout(p.queryTimeoutMs)
         const adapter = getDatabaseAdapter(rec)
@@ -106,7 +106,7 @@ export function registerQueryIpc() {
           return err('CONNECTION_NOT_FOUND', '未找到该连接')
         }
         const page = Math.max(1, p.page || 1)
-        const pageSize = Math.min(10_000, Math.max(1, p.pageSize || 200))
+        const pageSize = Math.min(10_000, Math.max(1, p.pageSize || 100))
         const queryRunId = p.queryRunId ?? randomUUID()
         const timeoutMs = normalizeQueryTimeout(p.queryTimeoutMs)
         const adapter = getDatabaseAdapter(rec)

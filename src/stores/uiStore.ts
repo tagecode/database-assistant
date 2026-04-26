@@ -6,7 +6,7 @@ type ExecutionLogLevel = 'info' | 'success' | 'warning' | 'error'
 
 const MAX_EXECUTION_LOGS = 200
 export const DEFAULT_EDITOR_FONT_SIZE = 14
-export const DEFAULT_QUERY_PAGE_SIZE = 200
+export const DEFAULT_QUERY_PAGE_SIZE = 100
 export const DEFAULT_QUERY_TIMEOUT_MS = 30_000
 
 export type ExecutionLogEntry = {
